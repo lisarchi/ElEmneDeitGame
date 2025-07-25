@@ -3,14 +3,12 @@ using UnityEngine;
 public class ContactWithMoster : MonoBehaviour
 {
     [SerializeField] private bool _contacted;
-    private ShowMessage _message;
     private PlayerHealth _playerHealth;
     private ShowMonsterEyes _showEyes;
 
     private void Awake()
     {
         _contacted = false;
-        _message = gameObject.GetComponentInChildren<ShowMessage>();
         _playerHealth = GameObject.FindGameObjectWithTag("PlayerHealth").GetComponent<PlayerHealth>();
         _showEyes = gameObject.GetComponentInChildren<ShowMonsterEyes>();
     }
@@ -28,7 +26,6 @@ public class ContactWithMoster : MonoBehaviour
             {
                 return;
             }
-            _message.ShowRandomMessage();
         }
     }
         

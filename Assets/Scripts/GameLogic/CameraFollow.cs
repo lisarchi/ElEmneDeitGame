@@ -17,14 +17,14 @@ public class CameraFollow : MonoBehaviour
 		}
 	}
 
-	void OnEnable()
+	void Start()
 	{
 		_originalPos = _camTransform.localPosition;
 	}
 
 	private void Update()
 	{
-		Vector3 Offset = new Vector3(4, 1.5f, 0);
+		Vector3 Offset = new Vector3(4, 3f, 0);
 		Vector3 newPosition = _target.position + Offset;
 		newPosition.z = -10;
 		transform.position = Vector3.Slerp(transform.position, newPosition, _followSpeed * Time.deltaTime);

@@ -1,12 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 100f;
+    [SerializeField] internal JoystickHandler _joystick;
+    [SerializeField] internal float _moveInput;
+
+    public Vector2 checkpointPos;
     private Rigidbody2D _rb;
     private Flip flip;
 
-    public Vector2 _moveVector;
     public Animator playerAnimator;
 
     private void Awake()
@@ -17,63 +21,53 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _moveVector.x = 0f;
+        checkpointPos = transform.position;
     }
     private void Update()
     {
-        playerAnimator.SetFloat("HorizontalMove", Mathf.Abs(_moveVector.x));
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _moveVector.x = -1;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            _moveVector.x = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            _moveVector.x = 1;
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            _moveVector.x = 0;
-        }
-    }
+        _moveInput = _joystick._inputVector.x;
+        //_moveInput = Input.GetAxis("Horizontal");
 
-    public void OnLeftButtonDown()
-    {
-        _moveVector.x = -1f;
-    }
-    public void OnRightButtonDown()
-    {
-        _moveVector.x =1f;
-    }
-    public void OnButtonUp()
-    {
-        _moveVector.x = 0f;
+        playerAnimator.SetFloat("HorizontalMove", Mathf.Abs(_moveInput));
     }
     private void FixedUpdate()
     {
         if (Time.timeScale == 0)
             return;
 
-        PlayerMove();
+        if (_rb.velocity.magnitude < _speed)
+        {
+            _rb.AddForce(_moveInput * Vector2.right * _speed);
+        }
 
-        if (_moveVector.x > 0)
+        if (_moveInput > 0)
         {
             flip.FlipDirection("right");
         }
 
-        if (_moveVector.x < 0)
+        if (_moveInput < 0)
         {
             flip.FlipDirection("left");
         }
     }
-    private void PlayerMove()
+
+    internal void Die()
     {
-        if (_rb.velocity.magnitude<_speed)
-        {
-            _rb.AddForce(_moveVector.x * Vector2.right * _speed);
-        }
+        StartCoroutine(Respawn(0.5f));
+    }
+    
+    public void UpdateCheckpoint(Vector2 pos)
+    {
+        checkpointPos = pos;
+    }
+    public IEnumerator Respawn(float duration)
+    {
+        _rb.velocity = new Vector2(0, 0);
+        _rb.simulated = false;
+        transform.localScale = new Vector3(0, 0, 0);
+        yield return new WaitForSeconds(duration);
+        transform.position = checkpointPos;
+        transform.localScale = new Vector3(1, 1, 1);
+        _rb.simulated = true;
     }
 }

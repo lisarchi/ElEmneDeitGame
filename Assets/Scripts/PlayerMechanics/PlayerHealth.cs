@@ -4,17 +4,11 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] internal int _health;
     [SerializeField] internal int _maxHealth = 50;
-    [SerializeField] private GameObject GameFunctions;
     [SerializeField] internal HealthBar _healthBar;
-
+    [SerializeField] private PlayerController _controller;
     private float _timeOfDamage;
-    private DeathEvent _deathEvent;
-    private int _coinHealth = 1;
 
-    private void Awake()
-    {
-        _deathEvent = GameFunctions.GetComponent<DeathEvent>();
-    }
+    private int _coinHealth = 1;
 
     private void Start()
     {
@@ -34,14 +28,19 @@ public class PlayerHealth : MonoBehaviour
 
         if (_health < 1)
         {
-            _deathEvent.Death();
+            _controller.Die();
+            HillHP();
+            HillHP();
+            HillHP();
+            HillHP();
+            HillHP();
         }
     }
 
     internal void HillHP()
     {
         _health = _health + _coinHealth;
-        print(_health.ToString());
+
         _healthBar.UpdateHealth(_maxHealth, _health);
     }
 
@@ -55,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
         {
             _timeOfDamage = 0.5f;
             _health--;
-            print(_health.ToString());
+
             _healthBar.UpdateHealth(_maxHealth, _health);
         }
     }
