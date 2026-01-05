@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         if (Time.timeScale == 0)
             return;
 
-        if (_rb.velocity.magnitude < _speed)
+        if (_rb.linearVelocity.magnitude < _speed)
         {
             _rb.AddForce(_moveInput * Vector2.right * _speed);
         }
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     }
     public IEnumerator Respawn(float duration)
     {
-        _rb.velocity = new Vector2(0, 0);
+        _rb.linearVelocity = new Vector2(0, 0);
         _rb.simulated = false;
         transform.localScale = new Vector3(0, 0, 0);
         yield return new WaitForSeconds(duration);

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8488522409315266808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 978457047393646789}
+  - component: {fileID: 4495624712409135071}
+  m_Layer: 0
+  m_Name: MessageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &978457047393646789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488522409315266808}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 772.17145, y: 0.54459, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4495624712409135071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488522409315266808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba0c3495a6412640b23fc9b194b9ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MessageManager
+  picturesMen:
+  - {fileID: 21300000, guid: 85053a3861904c84abebfeb129f02f58, type: 3}
+  - {fileID: 21300000, guid: 591be7894b59f68499fe19736a06ffef, type: 3}
+  - {fileID: 21300000, guid: 68cccf9e321cc8f4491c472f3d571932, type: 3}
+  - {fileID: 21300000, guid: eef05ba663adc024dab133b8caf6325b, type: 3}
+  - {fileID: 21300000, guid: 354d8c1c845552d4ab9fbdb8c439b5d2, type: 3}
+  - {fileID: 21300000, guid: b232f6dd996b71643861605f68d102d8, type: 3}
+  - {fileID: 21300000, guid: 579050814b358c54da5e14841a38dd47, type: 3}
+  - {fileID: 21300000, guid: ff28ac6537dd8f94fb7a34427caf9709, type: 3}
+  - {fileID: 21300000, guid: a48e2a24a441958468dc95ffef152076, type: 3}
+  - {fileID: 21300000, guid: fbd599704426ae040ac61ab77087b0c1, type: 3}
+  - {fileID: 21300000, guid: 4ff0668bd5dade4458a287ce0dd43673, type: 3}
+  - {fileID: 21300000, guid: 1f3e3dd85a6f77442bbed7728d6b935c, type: 3}
+  - {fileID: 21300000, guid: c456408d6ec90bd4aa60d080fe505748, type: 3}
+  - {fileID: 21300000, guid: 20de17b5c7272734c8999b1ac70b31db, type: 3}
+  - {fileID: 21300000, guid: 0c9e36f4980c1d747bc05435a484bc0d, type: 3}
+  - {fileID: 21300000, guid: 2b94083f1f2d51d4ba20b34d1ac56b5f, type: 3}
+  - {fileID: 21300000, guid: e6d4a14f0da0eba43b09299b90e52df9, type: 3}
+  - {fileID: 21300000, guid: 6c44b12dcab3f5147aec6e4c784f1a15, type: 3}
+  picturesWomen:
+  - {fileID: 21300000, guid: 392ad39fecb24014a9dc384c8b48359a, type: 3}
+  - {fileID: 21300000, guid: 11fa7c8daf61c97408bc01bffed82cb6, type: 3}
+  - {fileID: 21300000, guid: 68cccf9e321cc8f4491c472f3d571932, type: 3}
+  - {fileID: 21300000, guid: eef05ba663adc024dab133b8caf6325b, type: 3}
+  - {fileID: 21300000, guid: 354d8c1c845552d4ab9fbdb8c439b5d2, type: 3}
+  - {fileID: 21300000, guid: b232f6dd996b71643861605f68d102d8, type: 3}
+  - {fileID: 21300000, guid: 579050814b358c54da5e14841a38dd47, type: 3}
+  - {fileID: 21300000, guid: ff28ac6537dd8f94fb7a34427caf9709, type: 3}
+  - {fileID: 21300000, guid: a9d9c8f185252784ca324c97a21c5328, type: 3}
+  - {fileID: 21300000, guid: 67484177116509b488d4019b451d41e6, type: 3}
+  - {fileID: 21300000, guid: 4ff0668bd5dade4458a287ce0dd43673, type: 3}
+  - {fileID: 21300000, guid: 1f3e3dd85a6f77442bbed7728d6b935c, type: 3}
+  - {fileID: 21300000, guid: c456408d6ec90bd4aa60d080fe505748, type: 3}
+  - {fileID: 21300000, guid: 20de17b5c7272734c8999b1ac70b31db, type: 3}
+  - {fileID: 21300000, guid: 0c9e36f4980c1d747bc05435a484bc0d, type: 3}
+  - {fileID: 21300000, guid: 8cabd6d47c8245d4aa0c3474b1536947, type: 3}
+  - {fileID: 21300000, guid: e6d4a14f0da0eba43b09299b90e52df9, type: 3}
+  - {fileID: 21300000, guid: c51e4efe8613cbe42bd381ac89b02091, type: 3}
+  _pictureSet: 0

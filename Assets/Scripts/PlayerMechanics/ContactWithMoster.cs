@@ -31,18 +31,11 @@ public class ContactWithMoster : MonoBehaviour
         
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_contacted) return;
+
         if (collision.gameObject.tag.Equals("Player"))
         {
-            print("ContactMonster");
-
-            if (_contacted == true)
-                return;
-
-            if (_contacted == false)
-            {
-                
-                _contacted = true;
-            }
+            _contacted = true;
         }
     }
 }

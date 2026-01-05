@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        _health = 5;
+        _health = 10;
         _healthBar.UpdateHealth(_maxHealth, _health);
 
     }
@@ -29,11 +29,8 @@ public class PlayerHealth : MonoBehaviour
         if (_health < 1)
         {
             _controller.Die();
-            HillHP();
-            HillHP();
-            HillHP();
-            HillHP();
-            HillHP();
+            _health = 10; 
+            _healthBar.UpdateHealth(_maxHealth, _health);
         }
     }
 
