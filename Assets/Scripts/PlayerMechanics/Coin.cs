@@ -14,7 +14,7 @@ public class Coin : MonoBehaviour
         if (col.gameObject.tag.Equals("Player"))
         {
             _playerHealth.HillHP();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

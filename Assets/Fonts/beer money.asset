@@ -92,8 +92,8 @@ MonoBehaviour:
     padding: 4
     paddingMode: 0
     packingMode: 4
-    atlasWidth: 512
-    atlasHeight: 512
+    atlasWidth: 1024
+    atlasHeight: 1024
     characterSetSelectionMode: 6
     characterSequence: 0000-04ff
     referencedFontAssetGUID: 8f586378b4e144a9851e7b34d9b748ee
@@ -114,16 +114,16 @@ MonoBehaviour:
   m_IsMultiAtlasTexturesEnabled: 0
   m_GetFontFeatures: 1
   m_ClearDynamicDataOnBuild: 1
-  m_AtlasWidth: 512
-  m_AtlasHeight: 512
+  m_AtlasWidth: 1024
+  m_AtlasHeight: 1024
   m_AtlasPadding: 4
   m_AtlasRenderMode: 4117
   m_UsedGlyphRects: []
   m_FreeGlyphRects:
   - m_X: 0
     m_Y: 0
-    m_Width: 512
-    m_Height: 512
+    m_Width: 1024
+    m_Height: 1024
   m_FontFeatureTable:
     m_MultipleSubstitutionRecords: []
     m_LigatureSubstitutionRecords: []

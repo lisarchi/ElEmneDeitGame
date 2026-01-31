@@ -4,6 +4,7 @@ public class Checkpoint : MonoBehaviour
 {
     private PlayerController _controller;
     public Transform respawnPoint;
+    public int checkpointID;
     Collider2D coll;
 
     internal void Awake()
@@ -18,6 +19,16 @@ public class Checkpoint : MonoBehaviour
         {
             _controller.UpdateCheckpoint(respawnPoint.position);
             coll.enabled = false;
+
+            PlayerHealth health = GetComponent<PlayerHealth>();
+
+            SaveData data = new SaveData
+            {
+                health = health._health,
+                checkpointID = checkpointID
+            };
+
+            SaveSystem.Save(data);
         }
     }
 }

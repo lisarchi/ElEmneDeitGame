@@ -7,8 +7,8 @@ public class BagSpawner : MonoBehaviour
 {
     [SerializeField] private Transform _player;                 
     [SerializeField] private GameObject[] _bagPrefabs;     
-    [SerializeField] private float _spawnDistance = 25f;        
-    [SerializeField] private float _despawnDistance = 30f;      
+    [SerializeField] private float _spawnDistance = 35f;        
+    [SerializeField] private float _despawnDistance = 35f;      
 
     [SerializeField] private float _minSpawnDelay = 5f;
     [SerializeField] private float _maxSpawnDelay = 15f;
