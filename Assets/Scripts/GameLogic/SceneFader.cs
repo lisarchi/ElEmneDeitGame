@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
@@ -7,10 +7,10 @@ public class SceneFader : MonoBehaviour
 {
     public static SceneFader Instance;
 
-    [Header("UI Image должен растягиваться на весь экран")]
+    [Header("UI Image РґРѕР»Р¶РµРЅ СЂР°СЃС‚СЏРіРёРІР°С‚СЊСЃСЏ РЅР° РІРµСЃСЊ СЌРєСЂР°РЅ")]
     public Image blackPanel;
 
-    [Header("Длительность затемнения/появления")]
+    [Header("Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р·Р°С‚РµРјРЅРµРЅРёСЏ/РїРѕСЏРІР»РµРЅРёСЏ")]
     public float fadeDuration = 2f;
 
     private void Awake()
@@ -20,10 +20,7 @@ public class SceneFader : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Панель полностью черная в начале
             SetAlpha(1f);
-
-            // Fade In первой сцены
             StartCoroutine(Fade(1f, 0f));
         }
         else
@@ -32,7 +29,6 @@ public class SceneFader : MonoBehaviour
         }
     }
 
-    // Установить альфу панели
     private void SetAlpha(float a)
     {
         Color c = blackPanel.color;
@@ -40,21 +36,18 @@ public class SceneFader : MonoBehaviour
         blackPanel.color = c;
     }
 
-    // Плавное изменение альфа
     private IEnumerator Fade(float from, float to)
     {
         float t = 0f;
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
-            float a = Mathf.Lerp(from, to, t / fadeDuration);
-            SetAlpha(a);
+            SetAlpha(Mathf.Lerp(from, to, t / fadeDuration));
             yield return null;
         }
         SetAlpha(to);
     }
 
-    // Переход на сцену по индексу с плавным затемнением
     public void FadeToScene(int sceneIndex)
     {
         StartCoroutine(FadeAndLoad(sceneIndex));
@@ -62,13 +55,45 @@ public class SceneFader : MonoBehaviour
 
     private IEnumerator FadeAndLoad(int sceneIndex)
     {
-        // Затемнение
+        // Р—Р°С‚РµРјРЅРµРЅРёРµ
         yield return StartCoroutine(Fade(0f, 1f));
 
-        // Асинхронная загрузка сцены по индексу
-        yield return SceneManager.LoadSceneAsync(sceneIndex);
+        // РђСЃРёРЅС…СЂРѕРЅРЅР°СЏ Р·Р°РіСЂСѓР·РєР° СЃС†РµРЅС‹
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex);
+        while (!asyncLoad.isDone)
+            yield return null;
 
-        // Появление
+        // Р–РґС‘Рј РєР°РґСЂ
+        yield return null;
+
+        // рџ”№ РџСЂРёРјРµРЅСЏРµРј СЃРѕС…СЂР°РЅРµРЅРёРµ
+        ApplySaveIfExists();
+
+        // РџРѕСЏРІР»РµРЅРёРµ
         yield return StartCoroutine(Fade(1f, 0f));
+    }
+
+    private void ApplySaveIfExists()
+    {
+        if (!SaveManager.Instance.HasSave()) return;
+
+        SaveData data = SaveManager.Instance.LoadGame();
+        if (data == null) return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+
+        PlayerController pc = player.GetComponent<PlayerController>();
+        if (pc != null)
+        {
+            if (CheckpointManager.Instance != null)
+            {
+                CheckpointManager.Instance.RegisterCheckpoint(data.checkpointID);
+                player.transform.position = CheckpointManager.Instance.GetLastCheckpointPosition();
+            }
+
+            if (pc.healthAdapter != null)
+                pc.healthAdapter.SetHealth(data.health);
+        }
     }
 }

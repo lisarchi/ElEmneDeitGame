@@ -18976,6 +18976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 380988259}
   - component: {fileID: 380988258}
+  - component: {fileID: 380988260}
   m_Layer: 0
   m_Name: PlayerHealth
   m_TagString: PlayerHealth
@@ -19014,6 +19015,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &380988260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380988257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c7fd497ce166c47852d7bdbcef98dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSaveAdapter
+  _playerHealth: {fileID: 380988258}
 --- !u!1 &381423605
 GameObject:
   m_ObjectHideFlags: 0
@@ -22163,8 +22177,9 @@ MonoBehaviour:
   _speed: 100
   _joystick: {fileID: 1708028433}
   _moveInput: 0
-  checkpointPos: {x: 0, y: 0}
   playerAnimator: {fileID: 456572401}
+  healthAdapter: {fileID: 380988260}
+  checkpointPos: {x: 0, y: 0}
 --- !u!1 &459441519
 GameObject:
   m_ObjectHideFlags: 0
@@ -30966,7 +30981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 2006652266}
-  checkpointID: 0
+  checkpointID: 1
 --- !u!61 &673395599
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38558,7 +38573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 1672274493}
-  checkpointID: 0
+  checkpointID: 4
 --- !u!61 &845431745
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41218,7 +41233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 335566948}
-  checkpointID: 0
+  checkpointID: 2
 --- !u!61 &901592184
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44856,7 +44871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 661293503}
-  checkpointID: 0
+  checkpointID: 3
 --- !u!61 &978163879
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -68170,7 +68185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 2115071913}
-  checkpointID: 0
+  checkpointID: 5
 --- !u!61 &1601079795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84824,6 +84839,50 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.7534395, y: 9.8901825}
   m_EdgeRadius: 0
+--- !u!1 &1998952518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1998952520}
+  - component: {fileID: 1998952519}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1998952519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998952518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc074dbb4b141474284f9ddc3d663551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveManager
+--- !u!4 &1998952520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998952518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 72.28909, y: 11.50488, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2000911699
 GameObject:
   m_ObjectHideFlags: 0
@@ -94742,6 +94801,7 @@ SceneRoots:
   - {fileID: 939849184}
   - {fileID: 1360295817}
   - {fileID: 380988259}
+  - {fileID: 1998952520}
   - {fileID: 667850942}
   - {fileID: 1395401658}
   - {fileID: 673395600}
