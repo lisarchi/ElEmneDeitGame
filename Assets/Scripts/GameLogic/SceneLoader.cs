@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] private int _scene;
+    [SerializeField] private int _sceneID;
 
     public void OnPlayButtonClicked()
     {
         if (SceneFader.Instance != null)
-            SceneFader.Instance.FadeToScene(_scene);
+            SceneFader.Instance.FadeToScene(_sceneID);
         else
             Debug.LogWarning("SceneFader не найден!");
     }
@@ -19,7 +19,10 @@ public class SceneLoader : MonoBehaviour
         else
             Debug.LogWarning("SaveManager не найден! Сохранение не удалено");
 
+        if (CheckpointManager.Instance != null)
+            CheckpointManager.Instance.ResetProgress();
+
         if (SceneFader.Instance != null)
-            SceneFader.Instance.FadeToScene(_scene);
+            SceneFader.Instance.FadeToScene(_sceneID);
     }
 }

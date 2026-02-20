@@ -3,23 +3,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Animator playerAnimator;
+    public HealthSaveAdapter healthAdapter;
+    
     [Header("Movement")]
     [SerializeField] private float _speed = 100f;
     [SerializeField] internal JoystickHandler _joystick;
     [SerializeField] internal float _moveInput;
 
-    [Header("References")]
     private Rigidbody2D _rb;
-    private Flip flip;
-    public Animator playerAnimator;
-    public HealthSaveAdapter healthAdapter;
-
-    [Header("Checkpoint")]
-    public Vector2 checkpointPos;
+    private Flip _flip;
+    internal Vector2 checkpointPos;
 
     private void Awake()
     {
-        flip = GetComponent<Flip>();
+        _flip = GetComponent<Flip>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -31,8 +29,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _moveInput = _joystick._inputVector.x;
-        //_moveInput = Input.GetAxis("Horizontal");
-
         playerAnimator.SetFloat("HorizontalMove", Mathf.Abs(_moveInput));
     }
 
@@ -45,8 +41,8 @@ public class PlayerController : MonoBehaviour
             _rb.AddForce(_moveInput * Vector2.right * _speed);
         }
 
-        if (_moveInput > 0) flip.FlipDirection("right");
-        if (_moveInput < 0) flip.FlipDirection("left");
+        if (_moveInput > 0) _flip.FlipDirection("right");
+        if (_moveInput < 0) _flip.FlipDirection("left");
     }
 
     internal void Die()
@@ -84,14 +80,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ApplySavedCheckpoint()
     {
-        // Ждём, пока CheckpointManager и Player полностью инициализируются
         yield return new WaitUntil(() => CheckpointManager.Instance != null);
 
-        // Берём последнюю сохранённую позицию
         checkpointPos = CheckpointManager.Instance.GetLastCheckpointPosition();
         transform.position = checkpointPos;
 
-        // Если есть адаптер здоровья, восстанавливаем
         if (healthAdapter != null && SaveManager.Instance.HasSave())
         {
             SaveData data = SaveManager.Instance.LoadGame();

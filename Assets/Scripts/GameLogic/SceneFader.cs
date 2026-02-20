@@ -83,6 +83,12 @@ public class SceneFader : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
 
+        GameObject healthAdapter = GameObject.FindGameObjectWithTag("PlayerHealth");
+        if (healthAdapter == null) return;
+
+        HealthSaveAdapter adapter = healthAdapter.GetComponent<HealthSaveAdapter>();
+        if (adapter == null) return;
+
         PlayerController pc = player.GetComponent<PlayerController>();
         if (pc != null)
         {
@@ -92,8 +98,8 @@ public class SceneFader : MonoBehaviour
                 player.transform.position = CheckpointManager.Instance.GetLastCheckpointPosition();
             }
 
-            if (pc.healthAdapter != null)
-                pc.healthAdapter.SetHealth(data.health);
+            if (adapter != null)
+                adapter.SetHealth(data.health);
         }
     }
 }

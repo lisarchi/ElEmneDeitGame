@@ -15,21 +15,21 @@ public class GameFunctions : MonoBehaviour
 
     public void ExitGame()
     {
-        AutoSave();
+        //AutoSave();
         Debug.Log("Bye");
         Application.Quit();
     }
 
     private void AutoSave()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
+        GameObject playerHealth = GameObject.FindGameObjectWithTag("PlayerHealth");
+        if (playerHealth == null)
         {
             Debug.LogWarning("Игрок не найден, сохранение пропущено");
             return;
         }
 
-        HealthSaveAdapter healthAdapter = player.GetComponent<HealthSaveAdapter>();
+        HealthSaveAdapter healthAdapter = playerHealth.GetComponent<HealthSaveAdapter>();
         if (healthAdapter == null)
         {
             Debug.LogWarning("HealthSaveAdapter не найден на игроке");
